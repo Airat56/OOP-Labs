@@ -42,7 +42,7 @@ public:
         printf("Point: x = %d, y = %d\n", x, y);
     }
 
-private:
+protected:
     int x, y;
 };
 
@@ -51,6 +51,43 @@ void Point::reset() {
     x = 0;
     y = 0;
 }
+
+class ColoredPoint: public Point {
+public:
+    ColoredPoint() : Point() {
+        printf("ColoredPoint()\n");
+        color = 0;
+    }
+
+    ColoredPoint(int x, int y, int color) : Point(x, y) {
+        printf("ColoredPoint(int x, int y, int color)\n");
+        this->color = color;
+    }
+
+    ColoredPoint(const ColoredPoint &p){
+        printf("ColoredPoint(const ColoredPoint &p)\n");
+        x = p.x;
+        y = p.y;
+        color = p.color;
+    }
+
+    ~ColoredPoint() {
+        print();
+        printf("~ColoredPoint()\n");
+    }
+
+    void change_color(int color) {
+        this->color = color;
+    }
+
+    // переопределение метода в потомке
+    void print() {
+        printf("Point: x = %d, y = %d, color = %d\n", x, y, color);
+    }
+
+private:
+    int color;
+};
 
 int main() {
     {
