@@ -15,7 +15,7 @@ public:
     }
 
     Point(const Point &p) {
-        printf("Point(const Point &p)\n ");
+        printf("Point(const Point &p)\n");
         x = p.x;
         y = p.y;
     }
@@ -30,4 +30,20 @@ private:
 };
 
 int main() {
+    {
+        // пример создания (с помощью различных конструкторов) и удаления статически создаваемых объектов
+        Point p;
+        Point p2(5, 10);
+        Point p3(p2);
+    }
+    printf("\n");
+
+    // пример создания (с помощью различных конструкторов) и удаления динамически создаваемых объектов
+    Point *p = new Point;
+    Point *p2 = new Point(5, 10);
+    Point *p3 = new Point(*p2);
+
+    delete p;
+    delete p2;
+    delete p3;
 }
