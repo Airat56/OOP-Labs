@@ -86,6 +86,12 @@ public:
         printf("Point: x = %d, y = %d, color = %d\n", x, y, color);
     }
 
+    // вызов в переопределённом методе потомка унаследованного метода предка
+    void reset() {
+        Point::reset();
+        color = 0;
+    }
+
 private:
     int color;
 };
@@ -217,6 +223,8 @@ int main() {
         // пример помещения объектов в переменные различных типов
         Point *p = new ColoredPoint(5, 10, 34);
         ColoredPoint *p2 = new ColoredPoint(1, 5, 10);
+        p->reset();
+        p2->reset();
         delete p;
         delete p2;
     }
