@@ -65,7 +65,7 @@ public:
         this->color = color;
     }
 
-    ColoredPoint(const ColoredPoint &p){
+    ColoredPoint(const ColoredPoint &p) {
         printf("ColoredPoint(const ColoredPoint &p)\n");
         x = p.x;
         y = p.y;
@@ -99,16 +99,16 @@ public:
         p2 = new Point;
     }
 
-    Section(int x1, int y1, int x2, int y2){
+    Section(int x1, int y1, int x2, int y2) {
         printf("Section(int x1, int y1, int x2, int y2)\n");
         p1 = new Point(x1, y1);
         p2 = new Point(x2, y2);
     }
 
-    Section(const Section &s){
-        printf("Section(const Section &p)\n");
-        p1 = new Point(*s.p1);
-        p2 = new Point(*s.p2);
+    Section(const Section &other) {
+        printf("Section(const Section &other)\n");
+        p1 = new Point(*other.p1);
+        p2 = new Point(*other.p2);
     }
 
     ~Section() {
@@ -120,6 +120,33 @@ public:
 public:
     Point *p1;
     Point *p2;
+};
+
+// композиция с объектом
+class Circle {
+public:
+    Circle() {
+        printf("Circle()\n");
+        r = 0;
+    }
+
+    Circle(int x, int y, int r) : o(x, y) {
+        printf("Circle(int x, int y)\n");
+        this->r = r;
+    }
+
+    Circle(const Circle &other) : o(other.o) {
+        printf("Circle(const Circle &other)\n");
+        r = other.r;
+    }
+
+    ~Circle() {
+        printf("~Circle()\n");
+    }
+
+public:
+    Point o;
+    int r;
 };
 
 int main() {
