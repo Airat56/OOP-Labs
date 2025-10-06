@@ -125,8 +125,17 @@ int main() {
 
     {
         // пример создания и удаления объектов классов-наследников
-        ColoredPoint *cp2 = new ColoredPoint(5, 10, 34);
-        delete cp2;
+        ColoredPoint *cp = new ColoredPoint(5, 10, 34);
+        delete cp;
+    }
+    printf("----------------------------------------------------------------------\n");
+
+    {
+        // пример помещения объектов в переменные различных типов
+        Point *p = new ColoredPoint(5, 10, 34);
+        ColoredPoint *p2 = new ColoredPoint(1, 5, 10);
+        delete p;
+        delete p2;
     }
     printf("----------------------------------------------------------------------\n");
 
