@@ -52,6 +52,7 @@ void Point::reset() {
     y = 0;
 }
 
+// наследование
 class ColoredPoint: public Point {
 public:
     ColoredPoint() : Point() {
@@ -87,6 +88,38 @@ public:
 
 private:
     int color;
+};
+
+// композиция с указателем
+class Section {
+public:
+    Section() {
+        printf("Section()\n");
+        p1 = new Point;
+        p2 = new Point;
+    }
+
+    Section(int x1, int y1, int x2, int y2){
+        printf("Section(int x1, int y1, int x2, int y2)\n");
+        p1 = new Point(x1, y1);
+        p2 = new Point(x2, y2);
+    }
+
+    Section(const Section &s){
+        printf("Section(const Section &p)\n");
+        p1 = new Point(*s.p1);
+        p2 = new Point(*s.p2);
+    }
+
+    ~Section() {
+        delete p1;
+        delete p2;
+        printf("~Section()\n");
+    }
+
+public:
+    Point *p1;
+    Point *p2;
 };
 
 int main() {
