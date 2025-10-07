@@ -65,10 +65,8 @@ public:
         this->color = color;
     }
 
-    ColoredPoint(const ColoredPoint &p) {
+    ColoredPoint(const ColoredPoint &p) : Point(p) {
         printf("ColoredPoint(const ColoredPoint &p)\n");
-        x = p.x;
-        y = p.y;
         color = p.color;
     }
 
