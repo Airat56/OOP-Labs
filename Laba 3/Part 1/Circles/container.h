@@ -14,6 +14,8 @@ public:
     const T &getObject(int idx) const;
     void setObject(int idx, const T &obj);
     void pushBack(const T &obj);
+    void clear();
+    void erase(int idx);
 
 private:
     std::vector<T*> container;
