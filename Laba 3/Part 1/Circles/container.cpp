@@ -22,3 +22,14 @@ template <typename T>
 void Container<T>::pushBack(const T &obj) {
     container.push_back(obj);
 }
+
+template <typename T>
+void Container<T>::clear() {
+    /**
+       *  Erases all the elements.  Note that this function only erases the
+       *  elements, and that if the elements themselves are pointers, the
+       *  pointed-to memory is not touched in any way.  Managing the pointer is
+       *  the user's responsibility.
+       */
+    container.clear();
+}
