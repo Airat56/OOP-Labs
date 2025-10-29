@@ -7,12 +7,13 @@ template <typename T>
 class Container
 {
 public:
-    Container();
-    ~Container();
+    Container() = default;
+    Container(int size);
+    ~Container() = default;
     int getSize() const;
     const T &getObject(int idx) const;
     void setObject(int idx, const T &obj);
-    void append(const T &obj);
+    void pushBack(const T &obj);
 
 private:
     std::vector<T*> container;
