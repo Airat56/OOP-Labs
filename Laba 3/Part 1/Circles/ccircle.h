@@ -11,8 +11,7 @@ public:
     ~CCircle() = default;
     bool contains(const QPoint &point) const;
     void draw(QPainter &painter) const;
-    void select();
-    void unSelect();
+    void select(QPainter &painter) const;
 
 private:
     static const int RADIUS = 30;
