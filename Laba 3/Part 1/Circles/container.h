@@ -18,7 +18,7 @@ public:
     void erase(int idx);
 
 private:
-    std::vector<T*> container;
+    std::vector<T*> _container;
 };
 
 #endif // CONTAINER_H

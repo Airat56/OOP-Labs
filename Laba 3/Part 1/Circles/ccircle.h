@@ -1,20 +1,22 @@
 #ifndef CCIRCLE_H
 #define CCIRCLE_H
 
+#include <QPainter>
+#include <QPoint>
+
 class CCircle
 {
 public:
-    CCircle(int x, int y);
+    CCircle(const QPoint &point);
     ~CCircle() = default;
-    bool contains(const int &x, const int &y);
-    void draw();
+    bool contains(const QPoint &point) const;
+    void draw(QPainter &painter) const;
     void select();
     void unSelect();
 
 private:
     static const int RADIUS = 30;
-    int x;
-    int y;
+    QPoint _center;
 };
 
 #endif // CCIRCLE_H

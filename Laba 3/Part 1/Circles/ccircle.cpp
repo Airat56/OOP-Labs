@@ -1,10 +1,11 @@
 #include "ccircle.h"
 
-CCircle::CCircle(int x, int y) {
-    this->x = x;
-    this->y = y;
+CCircle::CCircle(const QPoint &point) : _center(point) {
 }
 
-bool CCircle::contains(const int &x, const int &y) {
+bool CCircle::contains(const QPoint &point) const {
+}
+
+void CCircle::draw(QPainter &painter) const {
     //
 }
