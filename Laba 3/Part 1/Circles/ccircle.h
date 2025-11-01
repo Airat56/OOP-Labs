@@ -8,7 +8,6 @@ class CCircle
 {
 public:
     CCircle(const QPoint &point);
-    ~CCircle() = default;
     bool contains(const QPoint &point) const;
     void draw(QPainter &painter) const;
     void select(QPainter &painter) const;
