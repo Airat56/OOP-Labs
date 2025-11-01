@@ -9,7 +9,6 @@ class Container
 public:
     Container() = default;
     Container(int size);
-    ~Container() = default;
     int getSize() const;
     const T &getObject(int idx) const;
     void setObject(int idx, const T &obj);
@@ -18,7 +17,7 @@ public:
     void erase(int idx);
 
 private:
-    std::vector<T*> _container;
+    std::vector<T> _container;
 };
 
 #endif // CONTAINER_H

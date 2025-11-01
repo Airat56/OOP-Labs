@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    Canvas canvas = new Canvas(this);
+    setCentralWidget(ui->centralwidget);
+    ui->gridLayout->addWidget(&canvas);
 }
 
 MainWindow::~MainWindow()

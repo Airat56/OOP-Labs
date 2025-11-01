@@ -5,13 +5,10 @@ Canvas::Canvas(QWidget *parent) : QWidget(parent) {
 }
 
 Canvas::~Canvas() {
-    for (int i = 0; i < _selectedCircles.getSize(); i++) {
-        _selectedCircles.setObject(i, nullptr);
-    }
+    _selectedCircles.clear();
 
     for (int i = 0; i < _circles.getSize(); i++) {
         delete _circles.getObject(i);
-        _circles.setObject(i, nullptr);
     }
 }
 
@@ -25,6 +22,8 @@ void Canvas::paintEvent(QPaintEvent *event) {
     for (int i = 0; i < _selectedCircles.getSize(); i++) {
         _selectedCircles.getObject(i)->select(painter);
     }
+
+    QWidget::paintEvent(event);
 }
 
 void Canvas::mousePressEvent(QMouseEvent *event) {
@@ -52,6 +51,7 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
     }
 
     update();
+    QWidget::mousePressEvent(event);
 }
 
 void Canvas::keyPressEvent(QKeyEvent *event) {

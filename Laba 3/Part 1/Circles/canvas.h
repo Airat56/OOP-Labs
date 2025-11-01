@@ -2,6 +2,7 @@
 #define CANVAS_H
 
 #include <container.h>
+#include <container.cpp>
 #include <ccircle.h>
 #include <QWidget>
 #include <QPaintEvent>
@@ -18,7 +19,7 @@ protected:
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
-    void resizeEvent(QResizeEvent *event) override;
+    // void resizeEvent(QResizeEvent *event) override;
 
 private:
     Container<CCircle*> _circles;
