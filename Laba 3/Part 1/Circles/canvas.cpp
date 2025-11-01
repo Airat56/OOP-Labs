@@ -17,6 +17,14 @@ Canvas::~Canvas() {
 
 void Canvas::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
+
+    for (int i = 0; i < _circles.getSize(); i++) {
+        _circles.getObject(i)->draw(painter);
+    }
+
+    for (int i = 0; i < _selectedCircles.getSize(); i++) {
+        _selectedCircles.getObject(i)->select(painter);
+    }
 }
 
 void Canvas::mousePressEvent(QMouseEvent *event) {
