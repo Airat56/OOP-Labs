@@ -38,8 +38,9 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
 
     // сохраняем все круги, в которые попали
     for (int i = 0; i < _circles.getSize(); i++) {
-        if (_circles.getObject(i)->contains(pos)) {
-            hitCircles.pushBack(_circles.getObject(i));
+        CCircle *circle = _circles.getObject(i);
+        if (circle->contains(pos)) {
+            hitCircles.pushBack(circle);
         }
     }
 
@@ -48,8 +49,9 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
         if (isCtrlPressed) {
             for (int i = 0; i < hitCircles.getSize(); i++) {
                 bool isSelected = false;
+                CCircle *currentHitCircle = hitCircles.getObject(i);
                 for (int j = 0; j < _selectedCircles.getSize(); j++) {
-                    if (hitCircles.getObject(i) == _selectedCircles.getObject(j)) {
+                    if (currentHitCircle == _selectedCircles.getObject(j)) {
                         // если круг уже выделен, снять выделение
                         _selectedCircles.erase(j);
                         isSelected = true;
@@ -59,7 +61,7 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
 
                 if (!isSelected) {
                     // если нет, выделить
-                    _selectedCircles.pushBack(hitCircles.getObject(i));
+                    _selectedCircles.pushBack(currentHitCircle);
                 }
             }
         } else {
