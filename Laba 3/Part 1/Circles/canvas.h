@@ -8,7 +8,6 @@
 #include <QPaintEvent>
 #include <QMouseEvent>
 #include <QKeyEvent>
-#include <QResizeEvent>
 
 class Canvas : public QWidget {
 public:
@@ -19,7 +18,6 @@ protected:
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
-    // void resizeEvent(QResizeEvent *event) override;
 
 private:
     Container<CCircle*> _circles;
