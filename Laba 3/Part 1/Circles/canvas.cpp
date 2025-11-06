@@ -97,5 +97,20 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
 }
 
 void Canvas::keyPressEvent(QKeyEvent *event) {
-    //
+    if (event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace) {
+        for (int i = 0; i < _selectedCircles.getSize(); i++) {
+            CCircle *currentSelectedCircle = _selectedCircles.getObject(i);
+            for (int j = 0; j < _circles.getSize(); j++) {
+                if (currentSelectedCircle == _circles.getObject(j)) {
+                    delete currentSelectedCircle;
+                    _circles.erase(j);
+                    break;
+                }
+            }
+        }
+        _selectedCircles.clear();
+        update();
+    }
+
+    QWidget::keyPressEvent(event);
 }
