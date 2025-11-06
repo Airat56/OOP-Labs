@@ -44,6 +44,15 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
         }
     }
 
+    // // сохраняем последний круг, в который попали
+    // for (int i = _circles.getSize() - 1; i >= 0; i--) {
+    //     CCircle *circle = _circles.getObject(i);
+    //     if (circle->contains(pos)) {
+    //         hitCircles.pushBack(circle);
+    //         break;
+    //     }
+    // }
+
     if (hitCircles.getSize() != 0) {
         // если нажал на круг
         if (isCtrlPressed) {
