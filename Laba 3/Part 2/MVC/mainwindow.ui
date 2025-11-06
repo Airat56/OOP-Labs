@@ -52,10 +52,17 @@
         <widget class="QLineEdit" name="lineEdA"/>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBoxA"/>
+        <widget class="QSpinBox" name="spinBoxA">
+         <property name="maximum">
+          <number>100</number>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QSlider" name="HSliderA">
+         <property name="maximum">
+          <number>100</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Orientation::Horizontal</enum>
          </property>
@@ -69,10 +76,17 @@
         <widget class="QLineEdit" name="lineEdB"/>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBoxB"/>
+        <widget class="QSpinBox" name="spinBoxB">
+         <property name="maximum">
+          <number>100</number>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QSlider" name="HSliderB">
+         <property name="maximum">
+          <number>100</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Orientation::Horizontal</enum>
          </property>
@@ -86,10 +100,17 @@
         <widget class="QLineEdit" name="lineEdC"/>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBoxC"/>
+        <widget class="QSpinBox" name="spinBoxC">
+         <property name="maximum">
+          <number>100</number>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QSlider" name="HSliderC">
+         <property name="maximum">
+          <number>100</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Orientation::Horizontal</enum>
          </property>
