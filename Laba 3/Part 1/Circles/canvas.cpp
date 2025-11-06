@@ -34,9 +34,40 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
 
     QPoint pos = event->pos();
     bool isCtrlPressed = event->modifiers() & Qt::ControlModifier;
+    Container<CCircle*> hitCircles;
 
-    if (false) {
+    // сохраняем все круги, в которые попали
+    for (int i = 0; i < _circles.getSize(); i++) {
+        if (_circles.getObject(i)->contains(pos)) {
+            hitCircles.pushBack(_circles.getObject(i));
+        }
+    }
+
+    if (hitCircles.getSize() != 0) {
         // если нажал на круг
+        if (isCtrlPressed) {
+            for (int i = 0; i < hitCircles.getSize(); i++) {
+                bool isSelected = false;
+                for (int j = 0; j < _selectedCircles.getSize(); j++) {
+                    if (hitCircles.getObject(i) == _selectedCircles.getObject(j)) {
+                        // если круг уже выделен, снять выделение
+                        _selectedCircles.erase(j);
+                        isSelected = true;
+                        break;
+                    }
+                }
+
+                if (!isSelected) {
+                    // если нет, выделить
+                    _selectedCircles.pushBack(hitCircles.getObject(i));
+                }
+            }
+        } else {
+            _selectedCircles.clear();
+            for (int i = 0; i < hitCircles.getSize(); i++) {
+                _selectedCircles.pushBack(hitCircles.getObject(i));
+            }
+        }
     } else {
         // если нажал на пустое место
         if (!isCtrlPressed) {
