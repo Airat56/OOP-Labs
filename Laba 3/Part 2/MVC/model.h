@@ -1,10 +1,27 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-class model
-{
+#include<QObject>
+
+class Model : public QObject {
+    Q_OBJECT
+
 public:
-    model();
+    Model(QObject *parent = nullptr);
+    ~Model();
+    int getA() const;
+    int getB() const;
+    int getC() const;
+    void setA(int value);
+    void setB(int value);
+    void setC(int value);
+    void saveData();
+    void loadData();
+
+private:
+    int _a, _b, _c;
+    static const int MIN = 0;
+    static const int MAX = 100;
 };
 
 #endif // MODEL_H

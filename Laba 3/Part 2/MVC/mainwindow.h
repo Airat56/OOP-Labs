@@ -17,6 +17,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_lineEdA_textChanged(const QString &arg1);
+    void on_lineEdB_textChanged(const QString &arg1);
+    void on_lineEdC_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };
