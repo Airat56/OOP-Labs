@@ -21,6 +21,9 @@ public:
 signals:
     void dataChanged();
 
+private slots:
+    void onDataChanged();
+
 private:
     int _a, _b, _c;
     static const int MIN = 0;

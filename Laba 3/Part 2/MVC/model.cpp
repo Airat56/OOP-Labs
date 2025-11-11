@@ -4,10 +4,12 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QByteArray>
+#include <QDebug>
 
 const QString Model::DATA_FILE_PATH = "data/saved_data.json";
 
 Model::Model(QObject *parent) : QObject(parent) {
+    connect(this, &Model::dataChanged, this, &Model::onDataChanged);
     loadData();
 }
 
@@ -152,4 +154,11 @@ void Model::loadData() {
     }
 
     emit dataChanged();
+}
+
+// SLOTS
+
+void Model::onDataChanged() {
+    // отладочная информация
+    qDebug() << "Data in Model changed: A = " << _a << ", B = " << _b << ", C = " << _c;
 }
