@@ -22,7 +22,6 @@ private:
     static const int MIN = 0;
     static const int MAX = 100;
 
-    void correctValues();
     void saveData();
     void loadData();
 };

@@ -31,7 +31,13 @@ void Model::setA(int value) {
 
     // разрешающее поведение
     _a = value;
-    correctValues();
+    if (_a > _c) {
+        _c = _a;
+    }
+
+    if (_b < _a) {
+        _b = _a;
+    }
 }
 
 void Model::setB(int value) {
@@ -62,7 +68,13 @@ void Model::setC(int value) {
 
     // разрешающее поведение
     _c = value;
-    correctValues();
+    if (_a > _c) {
+        _a = _c;
+    }
+
+    if (_b > _c) {
+        _b = _c;
+    }
 }
 
 
