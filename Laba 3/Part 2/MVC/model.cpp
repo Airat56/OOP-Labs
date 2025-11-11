@@ -105,7 +105,7 @@ void Model::loadData() {
         _a = MIN;
         _b = (MIN + MAX) / 2;
         _c = MAX;
-        // вызвать уведомление
+        emit dataChanged();
         return;
     }
 
@@ -117,7 +117,7 @@ void Model::loadData() {
         _a = MIN;
         _b = (MIN + MAX) / 2;
         _c = MAX;
-        // вызвать уведомление
+        emit dataChanged();
         return;
     }
 
@@ -150,5 +150,6 @@ void Model::loadData() {
     if (_b > _c) {
         _b = _c;
     }
-    // вызвать уведомление
+
+    emit dataChanged();
 }

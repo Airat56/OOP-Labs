@@ -18,6 +18,9 @@ public:
     void setC(int value);
 
 
+signals:
+    void dataChanged();
+
 private:
     int _a, _b, _c;
     static const int MIN = 0;
