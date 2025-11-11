@@ -1,4 +1,11 @@
 #include "model.h"
+#include <QFile>
+#include <QIODevice>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QByteArray>
+
+const QString Model::DATA_FILE_PATH = "data/saved_data.json";
 
 Model::Model(QObject *parent) : QObject(parent) {
     loadData();
@@ -77,4 +84,71 @@ void Model::setC(int value) {
     }
 }
 
+void Model::saveData() {
+    QFile file(DATA_FILE_PATH);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        return;
+    }
 
+    QJsonObject json;
+    json["a"] = _a;
+    json["b"] = _b;
+    json["c"] = _c;
+    QJsonDocument doc(json);
+    file.write(doc.toJson(QJsonDocument::Indented));
+    file.close();
+}
+
+void Model::loadData() {
+    QFile file(DATA_FILE_PATH);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        _a = MIN;
+        _b = (MIN + MAX) / 2;
+        _c = MAX;
+        // вызвать уведомление
+        return;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    if (doc.isNull()) {
+        _a = MIN;
+        _b = (MIN + MAX) / 2;
+        _c = MAX;
+        // вызвать уведомление
+        return;
+    }
+
+    QJsonObject json = doc.object();
+    // проверка
+    bool isAValid = json.contains("a") && json["a"].isDouble();
+    bool isBValid = json.contains("a") && json["a"].isDouble();
+    bool isCValid = json.contains("a") && json["a"].isDouble();
+
+    _a = isAValid ? json["a"].toInt() : MIN;
+    _c = isCValid ? json["c"].toInt() : MAX;
+    _b = isBValid ? json["b"].toInt() : (_a + _c) / 2;
+
+    if (_a < MIN || _a > MAX) {
+        _a = MIN;
+    }
+    if (_c < MIN || _c > MAX) {
+        _c = MAX;
+    }
+    if (_b < MIN || _b > MAX) {
+        _b = (_a + _c) / 2;
+    }
+
+    if (_a > _c) {
+        _c = _a;
+    }
+    if (_b < _a) {
+        _b = _a;
+    }
+    if (_b > _c) {
+        _b = _c;
+    }
+    // вызвать уведомление
+}

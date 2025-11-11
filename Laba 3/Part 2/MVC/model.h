@@ -1,7 +1,8 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include<QObject>
+#include <QObject>
+#include <QString>
 
 class Model : public QObject {
     Q_OBJECT
@@ -21,6 +22,7 @@ private:
     int _a, _b, _c;
     static const int MIN = 0;
     static const int MAX = 100;
+    static const QString DATA_FILE_PATH;
 
     void saveData();
     void loadData();
