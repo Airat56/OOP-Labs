@@ -89,6 +89,7 @@ void Model::setC(int value) {
 void Model::saveData() {
     QFile file(DATA_FILE_PATH);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Couldn't open the file for writing: " << DATA_FILE_PATH << "\n" << file.errorString();
         return;
     }
 
@@ -99,11 +100,13 @@ void Model::saveData() {
     QJsonDocument doc(json);
     file.write(doc.toJson(QJsonDocument::Indented));
     file.close();
+    qDebug() << "Model saved";
 }
 
 void Model::loadData() {
     QFile file(DATA_FILE_PATH);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Couldn't open the file (" << DATA_FILE_PATH << "). Load default values.\n" << file.errorString();
         _a = MIN;
         _b = (MIN + MAX) / 2;
         _c = MAX;
@@ -116,6 +119,7 @@ void Model::loadData() {
 
     QJsonDocument doc = QJsonDocument::fromJson(data);
     if (doc.isNull()) {
+        qWarning() << "Couldn't open the file (" << DATA_FILE_PATH << "). Load default values.\n" << file.errorString();
         _a = MIN;
         _b = (MIN + MAX) / 2;
         _c = MAX;
