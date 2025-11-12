@@ -5,8 +5,8 @@
 #include <QJsonDocument>
 #include <QByteArray>
 #include <QDebug>
-
-const QString Model::DATA_FILE_PATH = "data/saved_data.json";
+#include <QCoreApplication>
+#include <QDir>
 
 Model::Model(QObject *parent) : QObject(parent) {
     connect(this, &Model::dataChanged, this, &Model::onDataChanged);
@@ -86,10 +86,21 @@ void Model::setC(int value) {
     }
 }
 
+QString Model::getDataFilePath() {
+    QString dirPath = QCoreApplication::applicationDirPath() + "/data";
+    QDir dir(dirPath);
+    if (!dir.exists()) {
+        dir.mkpath(".");
+    }
+
+    return dirPath + "/saved_data.json";
+}
+
 void Model::saveData() {
-    QFile file(DATA_FILE_PATH);
+    QString dataFilePath = getDataFilePath();
+    QFile file(dataFilePath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qWarning() << "Couldn't open the file for writing: " << DATA_FILE_PATH << "\n" << file.errorString();
+        qWarning() << "Couldn't open the file for writing: " << dataFilePath << "\n" << file.errorString();
         return;
     }
 
@@ -100,13 +111,14 @@ void Model::saveData() {
     QJsonDocument doc(json);
     file.write(doc.toJson(QJsonDocument::Indented));
     file.close();
-    qDebug() << "Model saved";
+    qDebug() << "Model saved successfully";
 }
 
 void Model::loadData() {
-    QFile file(DATA_FILE_PATH);
+    QString dataFilePath = getDataFilePath();
+    QFile file(dataFilePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "Couldn't open the file (" << DATA_FILE_PATH << "). Load default values.\n" << file.errorString();
+        qWarning() << "Couldn't open the file (" << dataFilePath << "). Load default values.\n" << file.errorString();
         _a = MIN;
         _b = (MIN + MAX) / 2;
         _c = MAX;
@@ -119,7 +131,7 @@ void Model::loadData() {
 
     QJsonDocument doc = QJsonDocument::fromJson(data);
     if (doc.isNull()) {
-        qWarning() << "Couldn't open the file (" << DATA_FILE_PATH << "). Load default values.\n" << file.errorString();
+        qWarning() << "Couldn't open the file (" << dataFilePath << "). Load default values.\n" << file.errorString();
         _a = MIN;
         _b = (MIN + MAX) / 2;
         _c = MAX;
@@ -157,6 +169,7 @@ void Model::loadData() {
         _b = _c;
     }
 
+    qDebug() << "Model loaded successfully";
     emit dataChanged();
 }
 
@@ -164,5 +177,5 @@ void Model::loadData() {
 
 void Model::onDataChanged() {
     // отладочная информация
-    qDebug() << "Data in Model changed: A = " << _a << ", B = " << _b << ", C = " << _c;
+    qDebug() << "Data in Model changed: A =" << _a << ", B =" << _b << ", C =" << _c;
 }

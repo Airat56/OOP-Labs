@@ -28,10 +28,10 @@ private:
     int _a, _b, _c;
     static const int MIN = 0;
     static const int MAX = 100;
-    static const QString DATA_FILE_PATH;
 
     void saveData();
     void loadData();
+    QString getDataFilePath();
 };
 
 #endif // MODEL_H
