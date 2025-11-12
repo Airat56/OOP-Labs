@@ -29,13 +29,14 @@ int Model::getC() const {
     return _c;
 }
 
-void Model::setA(int value) {
+bool Model::setA(int value) {
+    // возвращает true - если значение изменено, false - если переданное значение некорректно
     if (value == _a) {
-        return;
+        return false;
     }
 
     if (value < MIN || value > MAX) {
-        return;
+        return false;
     }
 
     // разрешающее поведение
@@ -47,32 +48,39 @@ void Model::setA(int value) {
     if (_b < _a) {
         _b = _a;
     }
+
+    emit dataChanged();
+    return true;
 }
 
-void Model::setB(int value) {
+bool Model::setB(int value) {
+    // возвращает true - если значение изменено, false - если переданное значение некорректно
     if (value == _b) {
-        return;
+        return false;
     }
 
     if (value < MIN || value > MAX) {
-        return;
+        return false;
     }
 
     // запрещающее поведение
     if (value < _a || value > _c) {
-        return;
+        return false;
     }
 
     _b = value;
+    emit dataChanged();
+    return true;
 }
 
-void Model::setC(int value) {
+bool Model::setC(int value) {
+    // возвращает true - если значение изменено, false - если переданное значение некорректно
     if (value == _c) {
-        return;
+        return false;
     }
 
     if (value < MIN || value > MAX) {
-        return;
+        return false;
     }
 
     // разрешающее поведение
@@ -84,6 +92,9 @@ void Model::setC(int value) {
     if (_b > _c) {
         _b = _c;
     }
+
+    emit dataChanged();
+    return true;
 }
 
 QString Model::getDataFilePath() {

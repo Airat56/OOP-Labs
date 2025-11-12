@@ -13,9 +13,9 @@ public:
     int getA() const;
     int getB() const;
     int getC() const;
-    void setA(int value);
-    void setB(int value);
-    void setC(int value);
+    bool setA(int value);
+    bool setB(int value);
+    bool setC(int value);
 
 
 signals:
