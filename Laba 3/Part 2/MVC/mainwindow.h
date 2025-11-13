@@ -19,9 +19,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_lineEdA_textChanged(const QString &arg1);
-    void on_lineEdB_textChanged(const QString &arg1);
-    void on_lineEdC_textChanged(const QString &arg1);
+    void on_lineEdA_editingFinished();
+    void on_lineEdB_editingFinished();
+    void on_lineEdC_editingFinished();
 
 private:
     Ui::MainWindow *ui;
