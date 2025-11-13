@@ -30,9 +30,9 @@ int Model::getC() const {
 }
 
 bool Model::setA(int value) {
-    // возвращает true - если значение изменено, false - если переданное значение некорректно
+    // возвращает true - если переданное значение корректно, false - если некорректно
     if (value == _a) {
-        return false;
+        return true;
     }
 
     if (value < MIN || value > MAX) {
@@ -54,9 +54,9 @@ bool Model::setA(int value) {
 }
 
 bool Model::setB(int value) {
-    // возвращает true - если значение изменено, false - если переданное значение некорректно
+    // возвращает true - если переданное значение корректно, false - если некорректно
     if (value == _b) {
-        return false;
+        return true;
     }
 
     if (value < MIN || value > MAX) {
@@ -74,9 +74,9 @@ bool Model::setB(int value) {
 }
 
 bool Model::setC(int value) {
-    // возвращает true - если значение изменено, false - если переданное значение некорректно
+    // возвращает true - если переданное значение корректно, false - если некорректно
     if (value == _c) {
-        return false;
+        return true;
     }
 
     if (value < MIN || value > MAX) {
