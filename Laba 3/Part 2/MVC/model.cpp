@@ -9,7 +9,7 @@
 #include <QDir>
 
 Model::Model(QObject *parent) : QObject(parent) {
-    connect(this, &Model::dataChanged, this, &Model::onDataChanged);
+    connect(this, &Model::dataChanged, this, &Model::on_data_changed);
     loadData();
 }
 

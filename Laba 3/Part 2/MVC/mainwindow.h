@@ -32,6 +32,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Model *model;
+    Model *_model;
+    bool _isUpdating;
 };
 #endif // MAINWINDOW_H
