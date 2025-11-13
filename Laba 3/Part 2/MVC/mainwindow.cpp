@@ -101,3 +101,33 @@ void MainWindow::on_spinBoxC_valueChanged(int arg1)
         return;
     }
 }
+
+void MainWindow::on_HSliderA_valueChanged(int value)
+{
+    int currentValue = model->getA();
+    if (!model->setA(value)) {
+        ui->HSliderA->setValue(currentValue);
+        QMessageBox::warning(this, "Ошибка", "Введено некорректное значение");
+        return;
+    }
+}
+
+void MainWindow::on_HSliderB_valueChanged(int value)
+{
+    int currentValue = model->getB();
+    if (!model->setB(value)) {
+        ui->HSliderB->setValue(currentValue);
+        QMessageBox::warning(this, "Ошибка", "Введено некорректное значение");
+        return;
+    }
+}
+
+void MainWindow::on_HSliderC_valueChanged(int value)
+{
+    int currentValue = model->getC();
+    if (!model->setC(value)) {
+        ui->HSliderC->setValue(currentValue);
+        QMessageBox::warning(this, "Ошибка", "Введено некорректное значение");
+        return;
+    }
+}

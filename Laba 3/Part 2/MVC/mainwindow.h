@@ -25,6 +25,9 @@ private slots:
     void on_spinBoxA_valueChanged(int arg1);
     void on_spinBoxB_valueChanged(int arg1);
     void on_spinBoxC_valueChanged(int arg1);
+    void on_HSliderA_valueChanged(int value);
+    void on_HSliderB_valueChanged(int value);
+    void on_HSliderC_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
