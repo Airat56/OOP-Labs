@@ -186,7 +186,7 @@ void Model::loadData() {
 
 // SLOTS
 
-void Model::onDataChanged() {
+void Model::on_data_changed() {
     // отладочная информация
     qDebug() << "Data in Model changed: A =" << _a << ", B =" << _b << ", C =" << _c;
 }

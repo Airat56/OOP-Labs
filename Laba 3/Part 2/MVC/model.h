@@ -22,7 +22,7 @@ signals:
     void dataChanged();
 
 private slots:
-    void onDataChanged();
+    void on_data_changed();
 
 private:
     int _a, _b, _c;

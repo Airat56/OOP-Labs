@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , model(new Model(this))
 {
     ui->setupUi(this);
+    connect(model, &Model::dataChanged, this, &MainWindow::on_model_changed);
 }
 
 MainWindow::~MainWindow()
@@ -130,4 +131,8 @@ void MainWindow::on_HSliderC_valueChanged(int value)
         QMessageBox::warning(this, "Ошибка", "Введено некорректное значение");
         return;
     }
+}
+
+void MainWindow::on_model_changed() {
+    //
 }
