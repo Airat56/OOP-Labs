@@ -22,6 +22,9 @@ private slots:
     void on_lineEdA_editingFinished();
     void on_lineEdB_editingFinished();
     void on_lineEdC_editingFinished();
+    void on_spinBoxA_valueChanged(int arg1);
+    void on_spinBoxB_valueChanged(int arg1);
+    void on_spinBoxC_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

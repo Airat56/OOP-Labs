@@ -71,3 +71,33 @@ void MainWindow::on_lineEdC_editingFinished()
     }
 }
 
+
+void MainWindow::on_spinBoxA_valueChanged(int arg1)
+{
+    int currentValue = model->getA();
+    if (!model->setA(arg1)) {
+        ui->spinBoxA->setValue(currentValue);
+        QMessageBox::warning(this, "Ошибка", "Введено некорректное значение");
+        return;
+    }
+}
+
+void MainWindow::on_spinBoxB_valueChanged(int arg1)
+{
+    int currentValue = model->getB();
+    if (!model->setB(arg1)) {
+        ui->spinBoxB->setValue(currentValue);
+        QMessageBox::warning(this, "Ошибка", "Введено некорректное значение");
+        return;
+    }
+}
+
+void MainWindow::on_spinBoxC_valueChanged(int arg1)
+{
+    int currentValue = model->getC();
+    if (!model->setC(arg1)) {
+        ui->spinBoxC->setValue(currentValue);
+        QMessageBox::warning(this, "Ошибка", "Введено некорректное значение");
+        return;
+    }
+}
